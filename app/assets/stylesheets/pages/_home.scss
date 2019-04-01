@@ -1,1 +1,25 @@
 // Specific CSS for your home-page
+h3{
+  font-weight: 300;
+}
+
+h6{
+  font-family: 'Poppins', sans-serif;
+}
+
+h6{
+  background-color: #B77676;
+  padding: 10px 36px;
+  border-radius: 24px;
+}
+
+.my-container img{
+  width: 100vw;
+  height: 95vh;
+  object-position: 100% 0;
+  object-fit: cover;
+}
+
+#sign-up-rounded{
+  background-color: #CAA8A8;
+}
