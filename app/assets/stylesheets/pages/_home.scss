@@ -1,6 +1,11 @@
 // Specific CSS for your home-page
-h3{
+h1{
   font-weight: 300;
+  font-size: 24px;
+}
+
+h2{
+  font-size: 56px;
 }
 
 h6{
@@ -13,9 +18,43 @@ h6{
   border-radius: 24px;
 }
 
+.header-text #title{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:white;
+  z-index: 1;
+  font-weight: 400;
+}
+
+.header-text #subtitle{
+  position: absolute;
+  top: 27%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  z-index: 1;
+  font-weight: 400;
+}
+
+.header-text #title .color-pink{
+  color: #B77676;
+}
+
+.header-text #subtitle .color-pink{
+  color: #B77676;
+}
+
+.my-container{
+  background-color: black;
+  position: relative;
+}
+
 .my-container img{
+  opacity: 0.4;
   width: 100vw;
-  height: 95vh;
+  height: 100vh;
   object-position: 100% 0;
   object-fit: cover;
 }
