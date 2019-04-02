@@ -10,25 +10,7 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <% if user_signed_in? %>
-      <div class="nav-bar text-light d-flex bg-dark justify-content-between align-items-center pt-3 pb-2 px-4">
-        <h1>FIND YOUR TEACHER</h1>
-        <div class="d-flex left">
-          <i class="fas fa-search mt-2"></i>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <h6 id="sign-out-rounded"><%= link_to "SIGN OUT", destroy_user_session_path %></h6>
-        </div>
-      </div>
-    <% else %>
-      <div class="nav-bar text-light d-flex bg-dark justify-content-between align-items-center pt-3 pb-2 px-4">
-        <h1>FIND YOUR TEACHER</h1>
-        <div class="d-flex">
-          <h6 id="sign-up-rounded"><%= link_to "SIGN UP",  new_user_registration_path  %></h6>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <h6><%= link_to "LOGIN", new_user_session_path %></h6>
-        </div>
-      </div>
-    <% end %>
+    <%= render "shared/navbar" %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
