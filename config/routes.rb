@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :lessons, only: [:index, :new, :create, :show, :destroy]
   resources :users, only: [:new, :create, :show]
   resources :appointments, only: [:new, :create, :edit, :update, :destroy]
+  delete '/lessons/:id', to: 'lessons#destroy', as: 'delete_lesson'
 end

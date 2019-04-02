@@ -39,7 +39,7 @@ class LessonsController < ApplicationController
     else
       flash[:alert] = "Lesson could not be removed"
     end
-    redirect_to lessons_path
+    redirect_to user_path(@lesson.user_id)
   end
 
   private

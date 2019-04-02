@@ -1,0 +1,61 @@
+<div class="container my-5">
+
+  <div class="user-container text-center">
+    <%= cl_image_tag (@user.avatar), class: 'avatar-large' %>
+    <p><%= @user.username %><br><%= @user.email %><br><%= @user.phone_number %></p>
+  </div>
+
+  <div class="clearfix">
+    <div class="red-button float-right text-center">
+      <h6>CREATE LESSON</h6>
+    </div>
+  </div>
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="booked-tab" data-toggle="tab" href="#home" role="tab" aria-controls="booked" aria-selected="true">Booked</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="created-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="created" aria-selected="false">Created</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="booked-tab">
+      <div class="tab-container p-3">
+        Appointment cards should be added here!
+      </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="created-tab">
+      <div class="tab-container p-5 d-flex justify-content-center">
+
+        <div class="cards">
+          <div class="row">
+            <div class="col-sm-12">
+
+              <% @lessons.each do |lesson| %>
+              <div class="card p-3">
+                <h3><%= lesson.category.name %></h3>
+                <p><%= lesson.detail %></p>
+                <div class="details">
+                  <ul>
+                    <li><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
+                    <li><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
+                    <li><i class="far fa-usd-circle"></i> <%= lesson.price %> JPY</li>
+                  </ul>
+                </div>
+                <%= link_to delete_lesson_path(lesson), method: :delete, data: { confirm: "Are you sure to delete this lesson?"} do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+              </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
