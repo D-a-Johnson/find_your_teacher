@@ -1,33 +1,52 @@
 class LessonsController < ApplicationController
   before_action :find_lesson, only: [:show, :edit, :destroy, :update]
   def index
-    @lessons = Lesson.all
+    @lessons = policy_scope(Lesson)
   end
 
   def show
+    authorize @lesson
   end
 
   def new
     @lesson = Lesson.new
+    authorize @lesson
   end
 
   def create
-    @lesson = Lesson.create(lesson_params)
+    @lesson = Lesson.new(lesson_params)
+    authorize @lesson
+    if @lesson.save
+      redirect_to lesson_path(@lesson)
+    else
+      render :new
+    end
   end
 
   def update
-    @lesson.update(lesson_params)
+    authorize @lesson
+    if @lesson.update(lesson_params)
+      redirect_to lesson_path(@lesson)
+    else
+      render :new
+    end
   end
 
   def destroy
-    @lesson.destroy
+    authorize @lesson
+    if @lesson.destroy
+      flash[:notice] = "Lesson Removed"
+    else
+      flash[:alert] = "Lesson could not be removed"
+    end
+    redirect_to lessons_path
   end
+
+  private
 
   def find_lesson
     @lesson = Lesson.find(params[:id])
   end
-
-  private
 
   def lesson_params
     params.require(:lesson).permit(:price, :duration, :date, :city, :postal_code)
