@@ -28,7 +28,17 @@ User.create!(
   )
 
 Category.create(
-    name: "Music"
+    name: "Language - English",
+    name: "Language - Japanese",
+    name: "Language - Other",
+    name: "Music - Guitar",
+    name: "Music - Bass",
+    name: "Music - Drums",
+    name: "Music - Piano",
+    name: "Coding",
+    name: "Painting",
+    name: "Photography",
+    name: "Writing"
   )
 
 Lesson.create(
