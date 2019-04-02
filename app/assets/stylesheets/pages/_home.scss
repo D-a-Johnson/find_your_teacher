@@ -18,6 +18,16 @@ h6{
   border-radius: 24px;
 }
 
+h6 a {
+  color: white;
+  text-decoration: none;
+}
+
+h6 a:hover{
+  color: white;
+  text-decoration: none;
+}
+
 .header-text #title{
   position: absolute;
   top: 20%;
@@ -59,6 +69,14 @@ h6{
   object-fit: cover;
 }
 
+.nav-bar .left i{
+  font-size: 24px;
+}
+
 #sign-up-rounded{
   background-color: #CAA8A8;
+}
+
+#sign-out-rounded{
+  background-color: #9C225D;
 }
