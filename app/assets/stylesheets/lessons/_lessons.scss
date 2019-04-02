@@ -1,3 +1,17 @@
+ul{
+  padding: 0 0;
+  list-style-type: none;
+}
+
+.cards{
+  width: 100vw;
+  background-color: white;
+}
+
+.card {
+
+}
+
 .gmap_canvas{
   position: sticky;
   top: 0;
@@ -6,15 +20,17 @@
 .mapouter{
   position:relative;
   text-align:right;
-  height:100vh;
-  width:500px;}
+  height: 100vh;
+  width: 50vw;
+}
 
 .mapouter{
   position:relative;
   text-align:right;
   height:100vh;
-  width:500px;}
+  width:50vw;}
 
 #gmap_canvas {
   height: 100vh;
+  width: 50vw;
 }

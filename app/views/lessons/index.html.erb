@@ -1,11 +1,23 @@
 <div class="main-container d-flex justify-content-between">
   <div class="cards">
-    <p>Card goes here</p>
+    <% @lessons.each do |lesson| %>
+    <div class="card">
+      <h3><%= lesson.category.name %></h3>
+      <p><%= lesson.detail %></p>
+      <div class="details">
+        <ul>
+          <li><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
+          <li><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
+          <li><i class="far fa-usd-circle"></i> <%= lesson.price %></li>
+        </ul>
+      </div>
+    </div>
+    <% end %>
   </div>
-  <div class="map ">
+  <div class="map">
     <div class="mapouter">
       <div class="gmap_canvas">
-        <iframe width="500" id="gmap_canvas" src="https://maps.google.com/maps?q=osaka%20university&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0">
+        <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=osaka%20university&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0">
         </iframe>
       </div>
       <style>
