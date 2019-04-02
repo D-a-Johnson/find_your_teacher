@@ -1,7 +1,15 @@
 class LessonsController < ApplicationController
   before_action :find_lesson, only: [:show, :edit, :destroy, :update]
   def index
-    @lessons = policy_scope(Lesson)
+    @lessons = policy_scope(Lesson).where.not(lat: nil, lng: nil)
+    authorize @lessons
+    @markers = @lessons.map do |lesson|
+      {
+        lat: lesson.lat,
+        lng: lesson.lng,
+        infoWindow: render_to_string(partial: "infowindow", locals: { lesson: lesson })
+      }
+    end
   end
 
   def show

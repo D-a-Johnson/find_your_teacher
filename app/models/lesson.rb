@@ -6,6 +6,8 @@ class Lesson < ApplicationRecord
   validates :date, presence: true
   validates :city, presence: true
   validates :postal_code, presence: true
+  geocoded_by :postal_code
+  after_validation :geocode, if: :will_save_change_to_postal_code?
 
   def nice_date
     date.strftime("%B %d, %a") if date
