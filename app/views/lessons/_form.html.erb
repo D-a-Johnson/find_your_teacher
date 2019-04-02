@@ -1,0 +1,7 @@
+<%= simple_form_for(lesson) do |f| %>
+<%= f.label :duration %>
+<%= f.text_field :duration%>
+<%= f.input :photo %>
+<%= f.input :photo_cache, as: :hidden %>
+<%= f.submit%>
+<% end %>
