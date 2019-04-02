@@ -35,7 +35,7 @@ Category.create(
 
 Lesson.create(
     category_id: 1,
-    user_id: 8,
+    user_id: 1,
     price: 100,
     duration: 150,
     detail: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel eos, porro veniam sequi officiis fuga, beatae quasi quisquam. Natus adipisci et omnis, illum magni quae dolorem. Fugiat accusantium distinctio, quibusdam!",
