@@ -6,4 +6,9 @@ class Lesson < ApplicationRecord
   validates :date, presence: true
   validates :city, presence: true
   validates :postal_code, presence: true
+
+  def nice_date
+    date.strftime("%B %d, %a") if date
+  end
 end
+
