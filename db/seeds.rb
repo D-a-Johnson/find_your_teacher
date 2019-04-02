@@ -27,11 +27,9 @@ User.create!(
     password:"123456"
   )
 
-
 Category.create(
     name: "Music"
   )
-
 
 Lesson.create(
     category_id: 1,

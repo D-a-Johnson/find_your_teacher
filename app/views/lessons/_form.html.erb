@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3 mt-3">
+      <h2><strong>NEW LESSON</strong></h2>
+      <%= simple_form_for(lesson) do |f| %>
+        <div class="form-inputs">
+          <div class="row">
+            <%= f.input :duration,
+                      required: true %>
+            <%= f.input :date,
+                      required: true %>
+          </div>
+          <%= f.association :category,
+                      required: true %>
+          <%= f.input :location,
+                      required: true %>
+          <%= f.input :description,
+                      required: false,
+                      :input_html => {:rows => 4} %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Submit" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
