@@ -8,7 +8,7 @@ class Lesson < ApplicationRecord
   validates :postal_code, presence: true
 
   def nice_date
-    date.strftime("%b %d, %a") if date
+    date.strftime("%b %d, %a  %I:%M %p") if date
   end
 end
 
