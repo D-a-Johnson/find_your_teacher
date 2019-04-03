@@ -19,25 +19,12 @@ ul{
   color: white;
 }
 
-.gmap_canvas{
-  position: sticky;
-  top: 0;
+.map{
+  width: 1000px;
 }
-
-.mapouter{
-  position:relative;
-  text-align:right;
-  height: 100vh;
-  width: 50vw;
-}
-
-.mapouter{
-  position:relative;
-  text-align:right;
-  height:100vh;
-  width:50vw;}
 
 #gmap_canvas {
   height: 100vh;
-  width: 50vw;
+  position: sticky;
+  top: 0;
 }
