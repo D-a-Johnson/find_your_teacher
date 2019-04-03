@@ -3,6 +3,7 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
+    authorize @appointment
     @appointment.user = current_user
     @lesson = @appointment.lesson
     if @appointment.save
@@ -13,6 +14,7 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
+    authorize @appointment
   end
 
   def update
@@ -23,6 +25,7 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
+    authorize @appointment
     @appointment.destroy
     redirect_to user_path(current_user)
   end
