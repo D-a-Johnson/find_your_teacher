@@ -5,7 +5,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     authorize @appointment
     @appointment.user = current_user
-    @lesson = @appointment.lesson
+    @lesson.appointment = @appointment
     if @appointment.save
       redirect_to user_path(current_user)
     else
@@ -37,6 +37,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:user_id, :lesson_id, :confirmed)
+    params.require(:appointment).permit(:user_id, :confirmed)
   end
 end
