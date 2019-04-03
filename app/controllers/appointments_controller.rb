@@ -2,10 +2,11 @@ class AppointmentsController < ApplicationController
   before_action :find_appointment, only: [:edit, :update, :destroy]
 
   def create
-    @appointment = Appointment.new(appointment_params)
+    @appointment = Appointment.new
     authorize @appointment
     @appointment.user = current_user
-    @lesson.appointment = @appointment
+    @lesson = Lesson.find(params[:lesson_id])
+    @appointment.lesson = @lesson
     if @appointment.save
       redirect_to user_path(current_user)
     else
