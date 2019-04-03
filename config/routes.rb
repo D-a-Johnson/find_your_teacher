@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show]
   resources :appointments, only: [:edit, :update, :destroy]
   delete '/lessons/:id', to: 'lessons#destroy', as: 'delete_lesson'
+  delete '/appointments/:id', to: 'appointments#destroy', as: 'delete_appointment'
 end
