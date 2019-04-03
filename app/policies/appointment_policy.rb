@@ -9,12 +9,8 @@ class AppointmentPolicy < ApplicationPolicy
     return true
   end
 
-  def edit?
-    record.user == user
-  end
-
   def update?
-    record.user == user
+    record.lesson.user == user
   end
 
   def destroy?
