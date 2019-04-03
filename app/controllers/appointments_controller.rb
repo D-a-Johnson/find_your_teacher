@@ -2,9 +2,11 @@ class AppointmentsController < ApplicationController
   before_action :find_appointment, only: [:edit, :update, :destroy]
 
   def create
-    @appointment = Appointment.new(appointment_params)
+    @appointment = Appointment.new
+    authorize @appointment
     @appointment.user = current_user
-    @lesson = @appointment.lesson
+    @lesson = Lesson.find(params[:lesson_id])
+    @appointment.lesson = @lesson
     if @appointment.save
       redirect_to user_path(current_user)
     else
@@ -13,6 +15,7 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
+    authorize @appointment
   end
 
   def update
@@ -23,6 +26,7 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
+    authorize @appointment
     @appointment.destroy
     redirect_to user_path(current_user)
   end
@@ -34,6 +38,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:user_id, :lesson_id, :confirmed)
+    params.require(:appointment).permit(:user_id, :confirmed)
   end
 end

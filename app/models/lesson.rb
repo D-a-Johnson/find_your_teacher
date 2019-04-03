@@ -10,7 +10,7 @@ class Lesson < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_postal_code?
 
   def nice_date
-    date.strftime("%b %d, %a") if date
+    date.strftime("%b %d, %a  %I:%M %p") if date
   end
 
   def postal_code_city
