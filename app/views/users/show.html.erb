@@ -22,7 +22,13 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="booked-tab">
       <div class="tab-container p-3">
-        Appointment cards should be added here!
+        <% @appointments.each do |appointment| %>
+          <div class="card m-3 p-3">
+            <div class="d-flex justify-content-top">
+              <%= lesson = Lesson.find(lesson_id) %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="created-tab">
@@ -41,7 +47,6 @@
                       <% username = User.find(appointment.user_id).username %>
                       <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
                         <p id="appointment-alert">Appointment created by "<%= username %>"</p>&nbsp;&nbsp;&nbsp;
-                        <!-- this part is causing error! should be fixed! -->
                         <%= link_to appointment_path(appointment), method: :patch, data: { confirm: "Are you sure to confirm the appointment?"} do %>
                         <p class="btn btn-primary">Confirm</p>
                         <% end %>&nbsp;&nbsp;&nbsp;
