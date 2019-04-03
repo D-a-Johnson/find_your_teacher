@@ -2,7 +2,7 @@
   <div class="nav-bar text-light d-flex bg-dark justify-content-between align-items-center pt-3 pb-2 px-4">
     <h1><%= link_to "FIND YOUR TEACHER", root_path %></h1>
     <div class="d-flex left">
-      <i class="fas fa-search mt-2"></i>
+      <%= link_to raw("<i class='fas fa-search mt-2'></i>"), lessons_path  %>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        <li class="nav-item dropdown">
         <%= cl_image_tag (current_user.avatar), class: "avatar dropdown-toggle mb-1", "id": "navbarDropdown", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" %>
