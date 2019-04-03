@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2019_04_03_025604) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "start_time"
     t.float "longitude"
     t.float "latitude"
     t.index ["category_id"], name: "index_lessons_on_category_id"
