@@ -81,7 +81,7 @@
                     <% if appointment %> <%# check if appointment exists %>
                       <% username = User.find(appointment.user_id).username %>
                       <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
-                        <p id="appointment-alert">Appointment created by "<%= username %>"</p>&nbsp;&nbsp;&nbsp;
+                        <p id="appointment-alert">Booked by "<%= username %>"</p>&nbsp;&nbsp;&nbsp;
                         <%= link_to appointment_path(appointment), method: :patch, data: { confirm: "Are you sure to confirm the appointment?"} do %>
                         <p class="btn btn-primary">Confirm</p>
                         <% end %>&nbsp;&nbsp;&nbsp;
@@ -89,7 +89,7 @@
                         <p class="btn btn-danger">Reject</p>
                         <% end %>
                       <% else %>
-                        <p id="appointment-notice">Appointment confirmed with "<%= username %>"</p>
+                        <p><span id="appointment-notice">Confirmed</span> (Booked by "<%= username %>")</p>
                       <% end %>
                     <% else %>
                       <%= link_to delete_lesson_path(lesson), method: :delete, data: { confirm: "Are you sure to delete this lesson?"} do %>
