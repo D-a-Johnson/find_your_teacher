@@ -33,20 +33,38 @@
             <div class="col-sm-12">
 
               <% @lessons.each do |lesson| %>
-              <div class="card p-3">
-                <h3><%= lesson.category.name %></h3>
-                <p><%= lesson.detail %></p>
-                <div class="details">
-                  <ul>
-                    <li><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
-                    <li><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
-                    <li><i class="far fa-usd-circle"></i> <%= lesson.price %> JPY</li>
-                  </ul>
+                <div class="card m-3 p-3">
+                  <div class="d-flex justify-content-top">
+                    <h3><%= lesson.category.name %></h3>&nbsp;&nbsp;&nbsp;
+                    <% appointment = Appointment.find_by(lesson_id: lesson.id) %>
+                    <% if appointment %> <%# check if appointment exists %>
+                      <% username = User.find(appointment.user_id).username %>
+                      <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
+                        <p id="appointment-alert">Appointment created by "<%= username %>"</p>&nbsp;&nbsp;&nbsp;
+                        <!-- this part is causing error! should be fixed! -->
+                        <%= link_to appointment_path(appointment), method: :patch, data: { confirm: "Are you sure to confirm the appointment?"} do %>
+                        <p class="btn btn-primary">Confirm</p>
+                        <% end %>&nbsp;&nbsp;&nbsp;
+                        <p class="btn btn-danger">Reject</p>
+                      <% else %>
+                        <p id="appointment-notice">Appointment confirmed with "<%= username %>"</p>
+                      <% end %>
+                    <% else %>
+                      <%= link_to delete_lesson_path(lesson), method: :delete, data: { confirm: "Are you sure to delete this lesson?"} do %>
+                        <i class="far fa-trash-alt"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <p><%= lesson.detail %></p>
+                  <div class="details">
+                    <ul>
+                      <li><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
+                      <li><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
+                      <li><i class="far fa-usd-circle"></i> <%= lesson.price %> JPY</li>
+                    </ul>
+                  </div>
+
                 </div>
-                <%= link_to delete_lesson_path(lesson), method: :delete, data: { confirm: "Are you sure to delete this lesson?"} do %>
-                  <i class="far fa-trash-alt"></i>
-                <% end %>
-              </div>
               <% end %>
 
             </div>

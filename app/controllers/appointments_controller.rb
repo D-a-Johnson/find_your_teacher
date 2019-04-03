@@ -1,4 +1,4 @@
-class AppointmentController < ApplicationController
+class AppointmentsController < ApplicationController
   before_action :find_appointment, only: [:edit, :update, :destroy]
 
   def create
@@ -12,10 +12,13 @@ class AppointmentController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
+    authorize @appointment
     @appointment.confirmed = true
+    @appointment.save
     redirect_to user_path(current_user)
   end
 
