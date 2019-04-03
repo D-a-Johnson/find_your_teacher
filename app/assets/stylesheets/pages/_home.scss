@@ -43,6 +43,16 @@ h6 a:hover{
   text-decoration: none;
 }
 
+.nav-bar i{
+  text-decoration: none;
+  color: white;
+  opacity: 1;
+}
+
+.nav-bar i:hover{
+  opacity: 0.9;
+}
+
 .header-text #title{
   position: absolute;
   top: 30%;
