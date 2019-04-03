@@ -41,7 +41,6 @@
                       <% username = User.find(appointment.user_id).username %>
                       <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
                         <p id="appointment-alert">Appointment created by "<%= username %>"</p>&nbsp;&nbsp;&nbsp;
-                        <!-- this part is causing error! should be fixed! -->
                         <%= link_to appointment_path(appointment), method: :patch, data: { confirm: "Are you sure to confirm the appointment?"} do %>
                         <p class="btn btn-primary">Confirm</p>
                         <% end %>&nbsp;&nbsp;&nbsp;
