@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_04_03_025604) do
   create_table "appointments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "lesson_id"
-    t.boolean "confirmed"
+    t.boolean "confirmed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_appointments_on_lesson_id"
