@@ -82,8 +82,8 @@ Lesson.create!(
     price: 150,
     duration: 170,
     detail: "I can teach you how to make user icons for fun! I am very good at it so I hope you look at my portfolio and come! :D",
-    city: "Kyoto",
-    postal_code: "09996",
+    city: "Taipei",
+    postal_code: "100",
     date: DateTime.new(2009,1,12,10,35)
     )
 
@@ -93,8 +93,8 @@ Lesson.create!(
     price: 100,
     duration: 150,
     detail: "Latin Lessons! Please come if you can read the following: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel eos, porro veniam sequi officiis fuga, beatae quasi quisquam. Natus adipisci et omnis, illum magni quae dolorem. Fugiat accusantium distinctio, quibusdam!",
-    city: "Kyoto",
-    postal_code: "09993",
+    city: "Osaka",
+    postal_code: "530-0025",
     date: DateTime.new(2009,9,14,8,30)
     )
 
@@ -105,7 +105,7 @@ Lesson.create!(
     duration: 175,
     detail: "My name is Peter and I am the best coder ever with some free time that you can take advantage of! I will be able to teach you any language just make sure you have some background or it will be a difficult start. You can find me in Akihabara at a Maid Cafe",
     city: "Tokyo",
-    postal_code: "110-0006",
+    postal_code: "100-0006",
     date: DateTime.new(2019,9,14,16,15)
   )
 
@@ -126,8 +126,8 @@ Lesson.create!(
     price: 1000,
     duration: 100,
     detail: "You may know me for my great art but this is a photography lesson! Making art is all the same stuff so I am also an expert in contempory photography!",
-    city: "Kyoto",
-    postal_code: "09983",
+    city: "Osaka",
+    postal_code: "530-6003",
     date: DateTime.new(2009,9,14,8,30)
     )
 
@@ -137,8 +137,8 @@ Lesson.create!(
     price: 690,
     duration: 30,
     detail: "My name is Alex and I am offering English tutoring. I have the best English, believe me, lots of experts say so! Please disregard the Russian accent",
-    city: "Tokyo",
-    postal_code: "110-0011",
+    city: "Pyeongyang",
+    postal_code: "0",
     date: DateTime.new(2018,7,27,18,45)
   )
 
@@ -148,8 +148,8 @@ Lesson.create!(
     price: 0,
     duration: 360,
     detail: "Ever wanted to be loud? Ever wanted to keep your family and neighbors up all night? If you answered yes then I am your guy! Come to Peter's Drum Emporium and learn to be loud.",
-    city: "Tokyo",
-    postal_code: "110-0023",
+    city: "Fukuoka",
+    postal_code: "810-0001",
     date: DateTime.new(2019,9,16,11,10)
   )
 
@@ -159,8 +159,8 @@ Lesson.create!(
     price: 1000,
     duration: 15,
     detail: "I take the best selfies so you should learn from me! :)",
-    city: "Tokyo",
-    postal_code: "110-0115",
+    city: "Seoul",
+    postal_code: "100-011",
     date: DateTime.new(2019,3,14,19,5)
   )
 
@@ -170,7 +170,7 @@ Lesson.create!(
     price: 78204,
     duration: 69,
     detail: "Painting lessons here! I specialize in finger painting only the greatest of pictures! It is also a great snack so please come!",
-    city: "Kyoto",
-    postal_code: "09985",
+    city: "Busan",
+    postal_code: "600-011",
     date: DateTime.new(2014,11,14,16,0)
   )
