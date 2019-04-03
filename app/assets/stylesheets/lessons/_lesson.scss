@@ -1,3 +1,32 @@
 .avatar-image{
   text-align: center;
 }
+
+.lesson-desc{
+  background-color: #CAA8A8;
+  color: white;
+}
+
+.lesson-map {
+  overflow:hidden;
+  background:none!important;
+  height: 300px;
+}
+
+.book-footer{
+  background-color: white;
+  color: #353A3F;
+}
+
+#gmap_canvas{
+  width: 100%;
+}
+
+#book-rounded{
+  color: white;
+  background-color: #EB6F6F;
+}
+
+#book-rounded:hover{
+  background-color: #cd5b45;
+}
