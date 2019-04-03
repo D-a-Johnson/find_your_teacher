@@ -4,6 +4,8 @@ class UsersController < ApplicationController
     authorize @user
 
     @lessons = Lesson.where(user_id: params[:id])
+
+    @appointments = Appointment.where(user_id: params[:id])
   end
 
   private
