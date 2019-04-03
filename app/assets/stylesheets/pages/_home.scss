@@ -43,9 +43,19 @@ h6 a:hover{
   text-decoration: none;
 }
 
+.nav-bar i{
+  text-decoration: none;
+  color: white;
+  opacity: 1;
+}
+
+.nav-bar i:hover{
+  opacity: 0.9;
+}
+
 .header-text #title{
   position: absolute;
-  top: 20%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   color:white;
@@ -55,7 +65,7 @@ h6 a:hover{
 
 .header-text #subtitle{
   position: absolute;
-  top: 27%;
+  top: 37%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -71,10 +81,20 @@ h6 a:hover{
   color: #B77676;
 }
 
+.search-bar{
+  width: 45%;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
 .my-container{
-  background-color: black;
+  background-color: black!important;
   position: relative;
 }
+
 
 .my-container img{
   opacity: 0.6;
@@ -92,6 +112,10 @@ h6 a:hover{
   background-color: #CAA8A8;
 }
 
-#sign-out-rounded{
-  background-color: #9C225D;
+#sign-up-rounded:hover{
+  background-color: #B77676;
+}
+
+#sign-out:hover{
+  background-color: #CAA8A8;
 }

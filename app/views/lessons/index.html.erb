@@ -1,17 +1,25 @@
 <div class="main-container d-flex justify-content-between">
-  <div class="cards">
+  <div class="cards pb-2">
     <% @lessons.each do |lesson| %>
-    <div class="card">
-      <h3><%= lesson.category.name %></h3>
-      <p><%= lesson.detail %></p>
-      <div class="details">
-        <ul>
-          <li><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
-          <li><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
-          <li><i class="far fa-usd-circle"></i> <%= lesson.price %></li>
-        </ul>
-      </div>
-    </div>
+      <%= link_to lesson_path(lesson), :action => 'go' do %>
+        <div class="card pt-3 px-3">
+          <div class="title d-flex justify-content-between">
+            <h4><%= lesson.category.name.upcase %></h4>
+            <%= cl_image_tag lesson.user.avatar, class: "avatar" %>
+          </div>
+          <div class="desc my-3">
+            <p><%= lesson.detail %></p>
+            <div class="details">
+              <ul class="d-flex">
+                <li class="mr-3"><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
+                <li class="mr-3"><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
+                <li class="mr-3"><i class="fas fa-yen-sign"></i> <%= lesson.price %></li>
+                <li class="mr-3"><i class="fas fa-map-marker-alt"></i> <%= lesson.city %>, <%= lesson.postal_code %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <div class="map">

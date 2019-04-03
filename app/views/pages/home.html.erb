@@ -3,16 +3,16 @@
     <h2 id=title>FIND YOUR <span class="color-pink">TEACHER</span></h2>
     <h2 id=subtitle>LEARN SOMETHING <span class="color-pink">NEW</span></h2>
     <div class="search-bar">
-
+      <input class="form-control" type="text" placeholder="Search lesson...">
     </div>
   </div>
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <%= image_tag "root-teach-code", alt: "two people in front of computer coding" %>
+        <%= image_tag "root-teach-code.jpg", alt: "two people in front of computer coding" %>
       </div>
       <div class="carousel-item">
-        <%= image_tag "root-girl-guitar.jpeg", alt: "girl on guitar" %>
+        <%= image_tag "root-girl-guitar.jpg", alt: "girl on guitar" %>
       </div>
       <div class="carousel-item">
         <%= image_tag "root-talk.jpg", alt: "3 girls in hijab talking" %>
@@ -28,3 +28,14 @@
     </a>
   </div>
 </div>
+
+<script>
+  const search = document.querySelector(".search-bar");
+  search.addEventListener('keypress', (event) => {
+    const key = event.which || event.keyCode;
+    if (key === 13) { // 13 is enter
+      // code for enter
+      window.location.href = "/lessons";
+    }
+  });
+</script>

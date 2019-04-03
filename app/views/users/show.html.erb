@@ -1,0 +1,79 @@
+<div class="container my-5">
+
+  <div class="user-container text-center">
+    <%= cl_image_tag (@user.avatar), class: 'avatar-large' %>
+    <p><%= @user.username %><br><%= @user.email %><br><%= @user.phone_number %></p>
+  </div>
+
+  <div class="clearfix">
+    <div class="red-button float-right text-center">
+      <h6>CREATE LESSON</h6>
+    </div>
+  </div>
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="booked-tab" data-toggle="tab" href="#home" role="tab" aria-controls="booked" aria-selected="true">Booked</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="created-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="created" aria-selected="false">Created</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="booked-tab">
+      <div class="tab-container p-3">
+        Appointment cards should be added here!
+      </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="created-tab">
+      <div class="tab-container p-5 d-flex justify-content-center">
+
+        <div class="cards">
+          <div class="row">
+            <div class="col-sm-12">
+
+              <% @lessons.each do |lesson| %>
+                <div class="card m-3 p-3">
+                  <div class="d-flex justify-content-top">
+                    <h3><%= lesson.category.name %></h3>&nbsp;&nbsp;&nbsp;
+                    <% appointment = Appointment.find_by(lesson_id: lesson.id) %>
+                    <% if appointment %> <%# check if appointment exists %>
+                      <% username = User.find(appointment.user_id).username %>
+                      <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
+                        <p id="appointment-alert">Appointment created by "<%= username %>"</p>&nbsp;&nbsp;&nbsp;
+                        <!-- this part is causing error! should be fixed! -->
+                        <%= link_to appointment_path(appointment), method: :patch, data: { confirm: "Are you sure to confirm the appointment?"} do %>
+                        <p class="btn btn-primary">Confirm</p>
+                        <% end %>&nbsp;&nbsp;&nbsp;
+                        <p class="btn btn-danger">Reject</p>
+                      <% else %>
+                        <p id="appointment-notice">Appointment confirmed with "<%= username %>"</p>
+                      <% end %>
+                    <% else %>
+                      <%= link_to delete_lesson_path(lesson), method: :delete, data: { confirm: "Are you sure to delete this lesson?"} do %>
+                        <i class="far fa-trash-alt"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <p><%= lesson.detail %></p>
+                  <div class="details">
+                    <ul>
+                      <li><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
+                      <li><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
+                      <li><i class="far fa-usd-circle"></i> <%= lesson.price %> JPY</li>
+                    </ul>
+                  </div>
+
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

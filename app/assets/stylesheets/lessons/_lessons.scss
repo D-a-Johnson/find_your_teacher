@@ -8,8 +8,15 @@ ul{
   background-color: white;
 }
 
-.card {
+.cards a{
+  color: #353A3F;
+  text-decoration: none;
+}
 
+.card:hover {
+  text-decoration: none;
+  background-color: #CAA8A8;
+  color: white;
 }
 
 .gmap_canvas{
