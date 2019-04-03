@@ -6,6 +6,7 @@ class LessonsController < ApplicationController
 
   def show
     authorize @lesson
+    @appointment = Appointment.new
   end
 
   def new
