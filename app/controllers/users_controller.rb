@@ -12,6 +12,4 @@ class UsersController < ApplicationController
     # @appointments = Appointment.where(user_id: params[:id])
     @appointments = current_user.appointments
   end
-
-  private
 end

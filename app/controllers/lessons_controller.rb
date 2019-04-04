@@ -64,7 +64,8 @@ class LessonsController < ApplicationController
     else
       flash[:alert] = "Lesson could not be removed"
     end
-    redirect_to user_path(@lesson.user_id)
+    redirect_to user_path(current_user)
+    redirect_to "#created"
   end
 
   private
@@ -74,6 +75,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:date, :duration, :price, :category_id, :city, :postal_code, :detail)
+    params.require(:lesson).permit(:date, :duration, :price, :category_id, :city, :address, :detail)
   end
 end
