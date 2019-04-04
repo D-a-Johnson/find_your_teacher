@@ -17,10 +17,12 @@ class LessonsController < ApplicationController
   def create
     @lesson = Lesson.new(lesson_params)
     authorize @lesson
+    @lesson.user = current_user
+
     if @lesson.save
-      redirect_to lesson_path(@lesson)
-    else
-      render :new
+      redirect_to user_path(current_user)
+
+      # render partial: 'lessons/create', locals: {lesson: @lesson}
     end
   end
 
@@ -50,6 +52,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:price, :duration, :date, :city, :postal_code)
+    params.require(:lesson).permit(:date, :duration, :price, :category_id, :city, :postal_code, :detail)
   end
 end

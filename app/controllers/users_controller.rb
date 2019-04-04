@@ -3,8 +3,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize @user
 
-    @lessons = Lesson.where(user_id: params[:id])
+    @lesson = Lesson.new
+    authorize @lesson
 
+    @lessons = Lesson.where(user_id: params[:id])
     @appointments = Appointment.where(user_id: params[:id])
   end
 
