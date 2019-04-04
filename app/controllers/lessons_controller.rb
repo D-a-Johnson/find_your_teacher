@@ -19,6 +19,7 @@ class LessonsController < ApplicationController
   def show
     authorize @lesson
     @appointment = Appointment.new
+    @review = Review.new
     @markers = [{
         lat: @lesson.latitude,
         lng: @lesson.longitude,

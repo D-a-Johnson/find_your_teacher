@@ -1,6 +1,7 @@
 class Lesson < ApplicationRecord
   belongs_to :category
   belongs_to :user
+  has_many :reviews
   validates :price, presence: true
   validates :duration, presence: true
   validates :date, presence: true
