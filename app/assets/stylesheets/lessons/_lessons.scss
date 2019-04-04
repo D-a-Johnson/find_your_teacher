@@ -5,6 +5,10 @@ ul{
 
 .cards{
   width: 100vw;
+  background-color: #F4F4F4!important;
+}
+
+.card{
   background-color: white;
 }
 
@@ -21,10 +25,4 @@ ul{
 
 .map{
   width: 1000px;
-}
-
-#gmap_canvas {
-  height: 100vh;
-  position: sticky;
-  top: 0;
 }
