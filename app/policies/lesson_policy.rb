@@ -5,6 +5,10 @@ class LessonPolicy < ApplicationPolicy
     end
   end
 
+  def index
+    return true
+  end
+
   def new?
     return true
   end
