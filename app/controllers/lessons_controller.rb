@@ -1,14 +1,28 @@
 class LessonsController < ApplicationController
   before_action :find_lesson, only: [:show, :edit, :destroy, :update]
   def index
+    @lessons = policy_scope(Lesson).where.not(latitude: nil, longitude: nil)
+    authorize @lessons
     @lessons = policy_scope(Lesson)
     @appointments = policy_scope(Appointment)
     @free_lessons = (Lesson.where('id NOT IN (SELECT DISTINCT(lesson_id) FROM appointments)') + Appointment.where.not(confirmed: true).map(&:lesson)).uniq
+    @markers = @lessons.map do |lesson|
+      {
+        lat: lesson.latitude,
+        lng: lesson.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { lesson: lesson })
+      }
+    end
   end
 
   def show
     authorize @lesson
     @appointment = Appointment.new
+    @markers = [{
+        lat: @lesson.latitude,
+        lng: @lesson.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { lesson: @lesson })
+    }]
   end
 
   def new
