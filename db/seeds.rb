@@ -82,8 +82,8 @@ Lesson.create!(
     price: 150,
     duration: 170,
     detail: "I can teach you how to make user icons for fun! I am very good at it so I hope you look at my portfolio and come! :D",
-    city: "Taipei",
-    postal_code: "100",
+    city: "Tokyo",
+    postal_code: "Aoyama Gakuin",
     date: DateTime.new(2009,1,12,10,35)
     )
 
@@ -93,8 +93,8 @@ Lesson.create!(
     price: 100,
     duration: 150,
     detail: "Latin Lessons! Please come if you can read the following: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel eos, porro veniam sequi officiis fuga, beatae quasi quisquam. Natus adipisci et omnis, illum magni quae dolorem. Fugiat accusantium distinctio, quibusdam!",
-    city: "Osaka",
-    postal_code: "530-0025",
+    city: "Sapporo",
+    postal_code: "0",
     date: DateTime.new(2009,9,14,8,30)
     )
 
@@ -105,7 +105,7 @@ Lesson.create!(
     duration: 175,
     detail: "My name is Peter and I am the best coder ever with some free time that you can take advantage of! I will be able to teach you any language just make sure you have some background or it will be a difficult start. You can find me in Akihabara at a Maid Cafe",
     city: "Tokyo",
-    postal_code: "100-0006",
+    postal_code: "Akihabara",
     date: DateTime.new(2019,9,14,16,15)
   )
 

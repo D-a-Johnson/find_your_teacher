@@ -15,6 +15,11 @@ class LessonsController < ApplicationController
   def show
     authorize @lesson
     @appointment = Appointment.new
+    @markers = [{
+        lat: @lesson.latitude,
+        lng: @lesson.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { lesson: @lesson })
+      }]
   end
 
   def new
