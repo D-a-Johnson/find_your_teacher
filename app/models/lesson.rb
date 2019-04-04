@@ -13,6 +13,15 @@ class Lesson < ApplicationRecord
     date.strftime("%b %d, %a  %I:%M %p") if date
   end
 
+  include PgSearch
+  pg_search_scope :global_search,
+    against: [:detail, :date, :price],
+    associated_against: {
+      category: [:name]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
   def postal_code_city
     "#{postal_code} #{city}"
   end
