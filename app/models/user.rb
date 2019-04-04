@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :lessons
   has_many :appointments
+  has_many :reviews
   validates :username, uniqueness: true, presence: true
   # validates :first_name, presence: true
   # validates :last_name, presence: true
