@@ -38,8 +38,12 @@ class LessonsController < ApplicationController
 
     if @lesson.save
       redirect_to user_path(current_user)
-
-      # render partial: 'lessons/create', locals: {lesson: @lesson}
+    else
+      flash[:alert] = "Lesson could not be created"
+      @user = current_user
+      @lessons = current_user.lessons
+      @appointments = current_user.appointments
+      render 'users/show'
     end
   end
 
