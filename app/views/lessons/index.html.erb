@@ -1,6 +1,6 @@
 <div class="main-container d-flex justify-content-between">
   <div class="cards pb-2">
-    <% @lessons.each do |lesson| %>
+    <% @free_lessons.each do |lesson| %>
       <%= link_to lesson_path(lesson), :action => 'go' do %>
         <div class="card pt-3 px-3">
           <div class="title d-flex justify-content-between">
@@ -8,7 +8,9 @@
             <%= cl_image_tag lesson.user.avatar, class: "avatar" %>
           </div>
           <div class="desc my-3">
-            <p><%= lesson.detail %></p>
+            <div class="lessons-desc">
+              <p><%= lesson.detail.truncate(200) %></p>
+            </div>
             <div class="details">
               <ul class="d-flex">
                 <li class="mr-3"><i class="fas fa-table"></i> <%= lesson.nice_date %></li>

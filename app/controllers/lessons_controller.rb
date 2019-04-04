@@ -3,6 +3,9 @@ class LessonsController < ApplicationController
   def index
     @lessons = policy_scope(Lesson).where.not(latitude: nil, longitude: nil)
     authorize @lessons
+    @lessons = policy_scope(Lesson)
+    @appointments = policy_scope(Appointment)
+    @free_lessons = (Lesson.where('id NOT IN (SELECT DISTINCT(lesson_id) FROM appointments)') + Appointment.where.not(confirmed: true).map(&:lesson)).uniq
     @markers = @lessons.map do |lesson|
       {
         lat: lesson.latitude,
@@ -19,7 +22,7 @@ class LessonsController < ApplicationController
         lat: @lesson.latitude,
         lng: @lesson.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { lesson: @lesson })
-      }]
+    }]
   end
 
   def new
