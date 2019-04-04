@@ -4,6 +4,11 @@ class LessonsController < ApplicationController
     @lessons = policy_scope(Lesson)
     @appointments = policy_scope(Appointment)
     @free_lessons = (Lesson.where('id NOT IN (SELECT DISTINCT(lesson_id) FROM appointments)') + Appointment.where.not(confirmed: true).map(&:lesson)).uniq
+    if params[:query].present?
+      @free_lessons = Lesson.global_search(params[:query])
+    else
+      @free_lessons
+    end
   end
 
   def show
