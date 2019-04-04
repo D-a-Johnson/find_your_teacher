@@ -5,9 +5,9 @@ class Lesson < ApplicationRecord
   validates :duration, presence: true
   validates :date, presence: true
   validates :city, presence: true
-  validates :postal_code, presence: true
-  geocoded_by :postal_code_city
-  after_validation :geocode, if: :will_save_change_to_postal_code?
+  validates :address, presence: true
+  geocoded_by :address_city
+  after_validation :geocode, if: :will_save_change_to_address?
 
   def self.search_params(params = {})
     if params[:query].present? && params[:category].present? && params[:date].present?
@@ -35,14 +35,14 @@ class Lesson < ApplicationRecord
 
   include PgSearch
   pg_search_scope :global_search,
-    against: [:detail, :date, :price, :city, :postal_code],
+    against: [:detail, :date, :price, :city, :address],
     associated_against: {
       category: [:name]
     },
     using: {
       tsearch: { prefix: true }
     }
-  def postal_code_city
-    "#{postal_code} #{city}"
+  def address_city
+    "#{address} #{city}"
   end
 end
