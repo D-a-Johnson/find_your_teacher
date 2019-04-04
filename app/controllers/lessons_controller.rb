@@ -65,7 +65,6 @@ class LessonsController < ApplicationController
       flash[:alert] = "Lesson could not be removed"
     end
     redirect_to user_path(current_user)
-    redirect_to "#created"
   end
 
   private

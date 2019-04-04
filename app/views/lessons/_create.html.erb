@@ -28,9 +28,32 @@
                   <%= f.input :city,
                               input_html: { class: "form-city" },
                               required: true %>
-                  <%= f.input :address,
+                  <%#= f.input :address,
                               input_html: { class: "form-address" },
                               required: true %>
+                  <%= f.input :address,
+                              input_html: { type: "search", id:"address", class: "form-address" },
+                              required: true %>
+
+                  <script src="https://cdn.jsdelivr.net/npm/places.js@1.16.3"></script>
+                  <script>
+                  (function() {
+                    var placesAutocomplete = places({
+                      container: document.querySelector('#address')
+                    });
+
+                    var $address = document.querySelector('#address-value')
+                    placesAutocomplete.on('change', function(e) {
+                      $address.textContent = e.suggestion.value
+                    });
+
+                    placesAutocomplete.on('clear', function() {
+                      $address.textContent = 'none';
+                    });
+
+                  })();
+                  </script>
+
                   <%= f.input :detail,
                               required: false,
                               input_html: { class: "form-detail" },
@@ -48,12 +71,7 @@
           </div>
         </div>
 
-
       </div>
-<!--       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-        <button type="button" class="btn btn-primary">CREATE LESSON</button>
-      </div> -->
     </div>
   </div>
 </div>
