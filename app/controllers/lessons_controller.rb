@@ -2,6 +2,8 @@ class LessonsController < ApplicationController
   before_action :find_lesson, only: [:show, :edit, :destroy, :update]
   def index
     @lessons = policy_scope(Lesson)
+    @appointments = policy_scope(Appointment)
+    @free_lessons = (Lesson.where('id NOT IN (SELECT DISTINCT(lesson_id) FROM appointments)') + Appointment.where.not(confirmed: true).map(&:lesson)).uniq
   end
 
   def show
