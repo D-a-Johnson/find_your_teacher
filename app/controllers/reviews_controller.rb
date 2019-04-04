@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new
+    @review = Review.new(review_params)
     authorize @review
     @review.user = current_user
     @lesson = Lesson.find(params[:lesson_id])
@@ -17,9 +17,10 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @review = Review.find(params[:id])
     authorize @review
     @review.destroy
-    redirect_to lesson_path(@lesson)
+    redirect_to lesson_path(@review.lesson)
   end
 
   private
