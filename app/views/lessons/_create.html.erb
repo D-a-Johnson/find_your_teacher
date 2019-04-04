@@ -14,22 +14,26 @@
             <div class="col-sm-10 offset-sm-1 mt-3">
               <%= simple_form_for(lesson) do |f| %>
                 <div class="form-inputs">
+                  <%= f.association :category,
+                              input_html: { class: "form-category" },
+                              required: true %>
                   <%= f.input :date,
                               required: true %>
                   <%= f.input :duration, label: "Duration (minutes)",
-                              input_html: { min: 0 },
+                              input_html: { min: 0, class: "form-duration" },
                               required: true %>
                   <%= f.input :price, label: "Price (yen)",
-                              input_html: { min: 0 },
-                              required: true %>
-                  <%= f.association :category,
+                              input_html: { min: 0, class: "form-price" },
                               required: true %>
                   <%= f.input :city,
+                              input_html: { class: "form-city" },
                               required: true %>
                   <%= f.input :address,
+                              input_html: { class: "form-address" },
                               required: true %>
                   <%= f.input :detail,
                               required: false,
+                              input_html: { class: "form-detail" },
                               :input_html => {:rows => 4} %>
                 </div>
 
