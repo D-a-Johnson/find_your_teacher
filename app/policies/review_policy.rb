@@ -4,4 +4,16 @@ class ReviewPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def index?
+    return true
+  end
+
+  def create?
+    record.user == user
+  end
+
+  def destroy?
+    record.user == user
+  end
 end

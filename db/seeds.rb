@@ -8,6 +8,7 @@
 User.destroy_all
 Category.destroy_all
 Lesson.destroy_all
+Review.destroy_all
 
 User.create!(
     first_name: "Peter",
@@ -173,4 +174,25 @@ Lesson.create!(
     city: "Kyoto",
     postal_code: "09985",
     date: DateTime.new(2014,11,14,16,0)
+  )
+
+Review.create!(
+  user_id: 1,
+  lesson_id: 1,
+  rating: 5,
+  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores illo autem dignissimos necessitatibus nobis repellat veniam quis distinctio provident, nostrum exercitationem veritatis quod. Quo delectus odit laboriosam, recusandae dolorum eos!"
+  )
+
+Review.create!(
+  user_id: 2,
+  lesson_id: 1,
+  rating: 3,
+  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores illo autem dignissimos necessitatibus nobis repellat veniam quis distinctio provident, nostrum exercitationem veritatis quod. Quo delectus odit laboriosam, recusandae dolorum eos!"
+  )
+
+Review.create!(
+  user_id: 3,
+  lesson_id: 1,
+  rating: 1,
+  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores illo autem dignissimos necessitatibus nobis repellat veniam quis distinctio provident, nostrum exercitationem veritatis quod. Quo delectus odit laboriosam, recusandae dolorum eos!"
   )

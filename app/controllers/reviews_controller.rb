@@ -1,10 +1,11 @@
 class ReviewsController < ApplicationController
   def index
-    @review = Review.all
+    @review = policy_scope(Review)
   end
 
   def create
     @review = Review.new
+    authorize @review
     @review.user = current_user
     @lesson = Lesson.find(params[:lesson_id])
     @review.lesson = @lesson
@@ -16,6 +17,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    authorize @review
     @review.destroy
     redirect_to lesson_path(@lesson)
   end
