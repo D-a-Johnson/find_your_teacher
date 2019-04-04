@@ -15,7 +15,7 @@ User.create!(
     email: "mcdonalds@everyday.omg",
     phone_number: "075-342-5185",
     remote_avatar_url: "https://avatars1.githubusercontent.com/u/43994166?s=460&v=4",
-    username: "McDonalds",
+    username: "Hamburgler",
     password:"123456"
 
   )
@@ -25,7 +25,7 @@ User.create!(
     email: "cocoichi@4ever.com",
     phone_number: "420-6969-6969",
     remote_avatar_url: "https://avatars1.githubusercontent.com/u/42726237?s=400&v=4",
-    username: "Russian_Spy",
+    username: "Russian_Spy_Putin<3",
     password:"123456"
   )
 
@@ -35,7 +35,7 @@ User.create!(
     email: "emoji-specialist@art.net",
     phone_number: "432-659-1953",
     remote_avatar_url: "https://avatars1.githubusercontent.com/u/46549190?s=400&v=4",
-    username: "Pao",
+    username: "Pooh Bear",
     password:"123456"
   )
 
