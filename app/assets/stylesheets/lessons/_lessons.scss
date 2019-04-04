@@ -5,6 +5,10 @@ ul{
 
 .cards{
   width: 100vw;
+  background-color: #F4F4F4!important;
+}
+
+.card{
   background-color: white;
 }
 
@@ -15,7 +19,7 @@ ul{
 
 .card:hover {
   text-decoration: none;
-  background-color: #CAA8A8;
+  background-color: #66b2b2;
   color: white;
 }
 
@@ -23,8 +27,7 @@ ul{
   width: 1000px;
 }
 
-#gmap_canvas {
-  height: 100vh;
+#map{
   position: sticky;
   top: 0;
 }

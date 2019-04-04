@@ -6,107 +6,126 @@
   </div>
 
   <div class="clearfix">
-    <div class="red-button float-right text-center">
-      <h6>CREATE LESSON</h6>
+    <div class="float-right text-center mr-5">
+      <button type="button" class="red-button" data-toggle="modal" data-target="#newlessonModal" data-whatever="@lesson">CREATE LESSON</button>
     </div>
   </div>
 
+  <%= render 'lessons/create', lesson: @lesson %>
+
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="booked-tab" data-toggle="tab" href="#home" role="tab" aria-controls="booked" aria-selected="true">Booked</a>
+      <a class="nav-link active" id="booked-tab" data-toggle="tab" href="#booked" role="tab" aria-controls="booked" aria-selected="true">Learning</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="created-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="created" aria-selected="false">Created</a>
+      <a class="nav-link" id="created-tab" data-toggle="tab" href="#created" role="tab" aria-controls="created" aria-selected="false">Teaching</a>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="booked-tab">
+    <div class="tab-pane fade show active" id="booked" role="tabpanel" aria-labelledby="booked-tab">
       <div class="tab-container p-5 d-flex justify-content-center">
 
         <div class="cards">
           <div class="row">
             <div class="col-sm-12">
+              <% if @appointments == [] %>
+                <p class="pt-3 pl-3">Currently you have no bookings.</p>
+              <% else %>
+                <% @appointments.each do |appointment| %>
+                  <div class="card m-3 p-3">
+                    <div class="d-flex justify-content-top">
+                      <% lesson = Lesson.find(appointment.lesson_id) %>
+                      <%# teacher_name = User.find(lesson.user_id).username %>
+                      <h4><%= lesson.category.name.upcase %></h4>&nbsp;&nbsp;&nbsp;
 
-              <% @appointments.each do |appointment| %>
-                <div class="card m-3 p-3">
-                  <div class="d-flex justify-content-top">
-                    <% lesson = Lesson.find(appointment.lesson_id) %>
-                    <% teacher_name = User.find(lesson.user_id).username %>
-                    <h4><%= lesson.category.name.upcase %></h4>&nbsp;&nbsp;&nbsp;
-
-                      <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
-                        <p id="appointment-alert">Waiting for confirmation</p>&nbsp;&nbsp;&nbsp;
-                      <% else %>
-                        <p id="appointment-notice">Appointment confirmed by "<%= teacher_name %>"</p>
-                        <%= link_to delete_appointment_path(appointment), method: :delete, data: { confirm: "Are you sure to cancel the appointment?"} do %>
-                        &nbsp;&nbsp;&nbsp;
-                        <p class="btn btn-danger">Cancel appointment</p>
+                        <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
+                          <p id="appointment-alert">Waiting for confirmation</p>&nbsp;&nbsp;&nbsp;
+                        <% else %>
+                          <p id="appointment-notice">Confirmed</p>
+                          <%= link_to delete_appointment_path(appointment), method: :delete, data: { confirm: "Are you sure to cancel the appointment?"} do %>
+                          &nbsp;&nbsp;&nbsp;
+                          <p class="btn btn-danger">Cancel</p>
+                          <% end %>
                         <% end %>
-                      <% end %>
+
+                    </div>
+                    <p><%= lesson.detail %></p>
+                    <div class="details">
+                      <ul>
+                        <li class="mr-3"><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
+                        <li class="mr-3"><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
+                        <li class="mr-3"><i class="fas fa-yen-sign"></i> <%= lesson.price %></li>
+                        <li class="mr-3"><i class="fas fa-map-marker-alt"></i> <%= lesson.city %>, <%= lesson.postal_code %></li>
+                      </ul>
+                    </div>
+
+                    <%= link_to lesson_path(lesson) do %>
+                    <p class="btn btn-secondary">lesson details</p>
+                    <% end %>
 
                   </div>
-                  <p><%= lesson.detail %></p>
-                  <div class="details">
-                    <ul>
-                      <li><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
-                      <li><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
-                      <li><i class="far fa-usd-circle"></i> <%= lesson.price %> JPY</li>
-                    </ul>
-                  </div>
-                </div>
+                <% end %>
               <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="created-tab">
+    <div class="tab-pane fade" id="created" role="tabpanel" aria-labelledby="created-tab">
       <div class="tab-container p-5 d-flex justify-content-center">
 
         <div class="cards">
           <div class="row">
             <div class="col-sm-12">
 
-              <% @lessons.each do |lesson| %>
-                <div class="card m-3 p-3">
-                  <div class="d-flex justify-content-top">
-                    <h4><%= lesson.category.name.upcase %></h4>&nbsp;&nbsp;&nbsp;
-                    <% appointment = Appointment.find_by(lesson_id: lesson.id) %>
-                    <% if appointment %> <%# check if appointment exists %>
-                      <% username = User.find(appointment.user_id).username %>
-                      <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
-                        <p id="appointment-alert">Appointment created by "<%= username %>"</p>&nbsp;&nbsp;&nbsp;
-                        <%= link_to appointment_path(appointment), method: :patch, data: { confirm: "Are you sure to confirm the appointment?"} do %>
-                        <p class="btn btn-primary">Confirm</p>
-                        <% end %>&nbsp;&nbsp;&nbsp;
-                        <%= link_to delete_appointment_path(appointment), method: :delete, data: { confirm: "Are you sure to reject the appointment?"} do %>
-                        <p class="btn btn-danger">Reject</p>
+              <% if @lessons == [] %>
+                <p class="pt-3 pl-3">Currently you have no lessons.</p>
+              <% else %>
+                <% @lessons.each do |lesson| %>
+                  <div class="card m-3 p-3">
+                    <div class="d-flex justify-content-top">
+                      <h4><%= lesson.category.name.upcase %></h4>&nbsp;&nbsp;&nbsp;
+                      <% appointment = Appointment.find_by(lesson_id: lesson.id) %>
+                      <% if appointment %> <%# check if appointment exists %>
+                        <% username = User.find(appointment.user_id).username %>
+                        <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
+                          <p id="appointment-alert">Booked by "<%= username %>"</p>&nbsp;&nbsp;&nbsp;
+                          <%= link_to appointment_path(appointment), method: :patch, data: { confirm: "Are you sure to confirm the appointment?"} do %>
+                          <p class="btn btn-primary">Confirm</p>
+                          <% end %>&nbsp;&nbsp;&nbsp;
+                          <%= link_to delete_appointment_path(appointment), method: :delete, data: { confirm: "Are you sure to reject the appointment?"} do %>
+                          <p class="btn btn-danger">Reject</p>
+                          <% end %>
+                        <% else %>
+                          <p><span id="appointment-notice">Confirmed</span> (Booked by "<%= username %>")</p>
                         <% end %>
                       <% else %>
-                        <p id="appointment-notice">Appointment confirmed with "<%= username %>"</p>
+                        <%= link_to delete_lesson_path(lesson), method: :delete, data: { confirm: "Are you sure to delete this lesson?"} do %>
+                          <i class="far fa-trash-alt"></i>
+                        <% end %>
                       <% end %>
-                    <% else %>
-                      <%= link_to delete_lesson_path(lesson), method: :delete, data: { confirm: "Are you sure to delete this lesson?"} do %>
-                        <i class="far fa-trash-alt"></i>
-                      <% end %>
-                    <% end %>
-                  </div>
-                  <p><%= lesson.detail %></p>
-                  <div class="details">
-                    <ul>
-                      <li><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
-                      <li><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
-                      <li><i class="far fa-usd-circle"></i> <%= lesson.price %> JPY</li>
-                    </ul>
-                  </div>
+                    </div>
+                    <p><%= lesson.detail %></p>
+                    <div class="details d-flex justify-content-top">
+                      <ul>
+                        <li class="mr-3"><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
+                        <li class="mr-3"><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
+                        <li class="mr-3"><i class="fas fa-yen-sign"></i> <%= lesson.price %></li>
+                        <li class="mr-3"><i class="fas fa-map-marker-alt"></i> <%= lesson.city %>, <%= lesson.postal_code %></li>
+                      </ul>
+                    </div>
 
-                </div>
+                    <%= link_to lesson_path(lesson) do %>
+                    <p class="btn btn-secondary">lesson details</p>
+                    <% end %>
+
+                  </div>
+                <% end %>
               <% end %>
 
             </div>
           </div>
         </div>
-
 
       </div>
     </div>

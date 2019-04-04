@@ -18,6 +18,6 @@ class AppointmentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.lesson.user == user
+    record.user == user || record.lesson.user == user  
   end
 end

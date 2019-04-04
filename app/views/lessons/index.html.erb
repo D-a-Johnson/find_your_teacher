@@ -1,5 +1,25 @@
 <div class="main-container d-flex justify-content-between">
   <div class="cards pb-2">
+    <div class="lessons-search my-2 mx-2">
+      <%= form_tag lessons_path, method: :get do %>
+        <div class="date-category d-flex">
+        <%= text_field_tag :date,
+          params[:date],
+          class: "datepicker mr-1 bg-info",
+          placeholder: "Search date"
+        %>
+        <%= select_tag "category", options_for_select(@categories.collect{ |category| [category.name, category.name] }), include_blank: true %>
+        </div>
+        <div class="d-flex">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control mt-1",
+          placeholder: "Search keyword or location"
+        %>
+        <%= submit_tag "SUBMIT", class: "mt-1 ml-1 btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
     <% @lessons.each do |lesson| %>
       <%= link_to lesson_path(lesson), :action => 'go' do %>
         <div class="card pt-3 px-3">
@@ -8,13 +28,15 @@
             <%= cl_image_tag lesson.user.avatar, class: "avatar" %>
           </div>
           <div class="desc my-3">
-            <p><%= lesson.detail %></p>
+            <div class="lessons-desc">
+              <p><%= lesson.detail.truncate(200) %></p>
+            </div>
             <div class="details">
               <ul class="d-flex">
                 <li class="mr-3"><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
                 <li class="mr-3"><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
                 <li class="mr-3"><i class="fas fa-yen-sign"></i> <%= lesson.price %></li>
-                <li class="mr-3"><i class="fas fa-map-marker-alt"></i> <%= lesson.city %>, <%= lesson.postal_code %></li>
+                <li class="mr-3"><i class="fas fa-map-marker-alt"></i> <%= lesson.city %>, <%= lesson.address %></li>
               </ul>
             </div>
           </div>
@@ -22,8 +44,15 @@
       <% end %>
     <% end %>
   </div>
+
   <div class="map">
-    <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=osaka%20university&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0">
-    </iframe>
+    <div
+      id="map"
+      style="width: 100%;
+      height: 100vh;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
   </div>
+
 </div>
