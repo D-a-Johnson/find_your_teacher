@@ -2,14 +2,11 @@ class LessonsController < ApplicationController
   before_action :find_lesson, only: [:show, :edit, :destroy, :update]
   def index
     @lessons = policy_scope(Lesson).where.not(latitude: nil, longitude: nil)
-    authorize @lessons
-    @lessons = policy_scope(Lesson)
     @appointments = policy_scope(Appointment)
-    @free_lessons = (Lesson.where('id NOT IN (SELECT DISTINCT(lesson_id) FROM appointments)') + Appointment.where.not(confirmed: true).map(&:lesson)).uniq
-    if params[:query].present?
-      @free_lessons = Lesson.global_search(params[:query])
-    else
-      @free_lessons
+    @categories = Category.all
+    @free_lessons = Lesson.where.not(id: Appointment.where(confirmed: true).pluck(:lesson_id).uniq)
+    @lessons = @free_lessons.search_params(params)
+
     @markers = @lessons.map do |lesson|
       {
         lat: lesson.latitude,
