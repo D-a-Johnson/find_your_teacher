@@ -8,6 +8,13 @@ class LessonsController < ApplicationController
     @free_lessons = (Lesson.where('id NOT IN (SELECT DISTINCT(lesson_id) FROM appointments)') + Appointment.where.not(confirmed: true).map(&:lesson)).uniq
     if params[:query].present?
       @free_lessons = Lesson.global_search(params[:query])
+      @markers = @free_lessons.map do |lesson|
+      {
+        lat: lesson.latitude,
+        lng: lesson.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { lesson: lesson })
+      }
+    end
     else
       @free_lessons
     @markers = @lessons.map do |lesson|
@@ -16,6 +23,7 @@ class LessonsController < ApplicationController
         lng: lesson.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { lesson: lesson })
       }
+    end
     end
   end
 
