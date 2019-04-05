@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
     @lessons = policy_scope(Lesson).where.not(latitude: nil, longitude: nil)
     @appointments = policy_scope(Appointment)
     @categories = Category.all
-    @free_lessons = Lesson.where.not(id: Appointment.where(confirmed: false).pluck(:lesson_id).uniq)
+    @free_lessons = Lesson.where.not(id: Appointment.pluck(:lesson_id).uniq)
     @lessons = @free_lessons.search_params(params)
 
     @markers = @lessons.map do |lesson|
