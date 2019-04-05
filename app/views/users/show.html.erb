@@ -42,11 +42,10 @@
                         <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
                           <p id="appointment-alert">Waiting for confirmation</p>&nbsp;&nbsp;&nbsp;
                         <% else %>
-                          <p id="appointment-notice">Confirmed</p>
-                          <%= link_to delete_appointment_path(appointment), method: :delete, data: { confirm: "Are you sure to cancel the appointment?"} do %>
-                          &nbsp;&nbsp;&nbsp;
+                          <p id="appointment-notice">Confirmed</p>&nbsp;&nbsp;&nbsp;
+                        <% end %>
+                        <%= link_to delete_appointment_path(appointment), method: :delete, data: { confirm: "Are you sure to cancel the appointment?"} do %>
                           <p class="btn btn-danger">Cancel</p>
-                          <% end %>
                         <% end %>
 
                     </div>
