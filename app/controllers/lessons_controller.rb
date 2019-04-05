@@ -1,5 +1,7 @@
 class LessonsController < ApplicationController
   before_action :find_lesson, only: [:show, :edit, :destroy, :update]
+  skip_before_action :authenticate_user!, only: [:index]
+
   def index
     @lessons = policy_scope(Lesson).where.not(latitude: nil, longitude: nil)
     @appointments = policy_scope(Appointment)
