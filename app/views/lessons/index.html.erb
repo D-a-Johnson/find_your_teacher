@@ -23,7 +23,7 @@
     <div class="">
       <% @lessons.each do |lesson| %>
         <%= link_to lesson_path(lesson), :action => 'go' do %>
-          <div class="card pt-3 px-3 mx-3 my-3">
+          <div class="card card-hover pt-3 px-3 mx-3 my-3">
             <div class="title d-flex justify-content-between">
               <h4><%= lesson.category.name.upcase %></h4>
               <%= cl_image_tag lesson.user.avatar, class: "avatar" %>
