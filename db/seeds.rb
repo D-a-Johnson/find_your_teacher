@@ -114,7 +114,7 @@ Lesson.create!(
     category_id: 12,
     user_id: 2,
     price: 690,
-    duration: 400,
+    duration: 100,
     detail: "My name is Alex and I am the best cook and popular founder of ChowTime(TM)! I am willing to run you through the basics of cooking just about anything from Gulash to Ramen! I specialize in Russian and Japanese dishes. You can find me in any bar around Nagoya station!",
     city: "Tokyo",
     address: "Nippon Budokan",
@@ -177,22 +177,8 @@ Lesson.create!(
   )
 
 Review.create!(
-  user_id: 1,
-  lesson_id: 1,
-  rating: 5,
-  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores illo autem dignissimos necessitatibus nobis repellat veniam quis distinctio provident, nostrum exercitationem veritatis quod. Quo delectus odit laboriosam, recusandae dolorum eos!"
-  )
-
-Review.create!(
-  user_id: 2,
-  lesson_id: 1,
-  rating: 3,
-  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores illo autem dignissimos necessitatibus nobis repellat veniam quis distinctio provident, nostrum exercitationem veritatis quod. Quo delectus odit laboriosam, recusandae dolorum eos!"
-  )
-
-Review.create!(
   user_id: 3,
-  lesson_id: 1,
-  rating: 1,
-  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores illo autem dignissimos necessitatibus nobis repellat veniam quis distinctio provident, nostrum exercitationem veritatis quod. Quo delectus odit laboriosam, recusandae dolorum eos!"
+  lesson_id: 4,
+  rating: 3,
+  content: "Maybe the best chef I have ever seen! He made a cheap meal that would put Gordon Ramsey to shame!"
   )
