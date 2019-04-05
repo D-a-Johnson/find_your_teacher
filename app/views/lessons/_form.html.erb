@@ -4,7 +4,7 @@
     <%= f.association :category,
                 input_html: { class: "form-category" },
                 required: true %>
-    <%= f.input :date,
+    <%= f.input :date, label: "Date / Time",
                 required: true %>
     <%= f.input :duration, label: "Duration (minutes)",
                 input_html: { min: 0, class: "form-duration" },
