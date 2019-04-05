@@ -7,18 +7,12 @@
 // }
 
 .tab-container {
-  background-color: #595959;
+  background-color: #C4C4C4;
   // height: 800px;
-  border-radius: 0 5px 5px 5px;
 }
 
-.lesson-cards {
-  background-color: #595959;
-}
-
-.individual-card{
-  background-color: white;
-  border-radius: 4px;
+.cards {
+  background-color: #C4C4C4;
 }
 
 .red-button {
@@ -28,15 +22,6 @@
   font-family: Rubik;
   font-size: 22px;
   color: #FFFFFF;
-}
-
-.btn-cancel{
-  font-weight: 600;
-  font-size: 18px;
-  color: #bf1148;
-  &:hover {
-    color: red;
-  }
 }
 
 button.red-button {
@@ -53,17 +38,6 @@ button.red-button {
   border-color: transparent;
   &:hover {
     background-color: #367588;
-  }
-}
-
-.btn-details{
-  color: white;
-  border-radius: 4px;
-  background-color: #429F9E;
-  &:hover {
-    background-color: #367588;
-    text-decoration: none;
-    color: #FFFFFF;
   }
 }
 
@@ -102,23 +76,21 @@ button.red-button {
 }
 
 .nav-tabs .nav-link.active {
-  background-color: #595959;
+  background-color: #C4C4C4;
   border-color: transparent;
-  color: white;
+  color: blue;
   font-family: 'Poppins', sans-serif;
   font-size: 20px;
 }
 
 .nav-tabs .nav-link {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
   border-color: transparent;
-  color: black;
+  color: blue;
   font-family: 'Poppins', sans-serif;
   font-size: 20px;
-  border: solid 1px #595959;
+  border: solid 1px #C4C4C4;
   &:hover {
-    border: solid 1px #595959;
+    border: solid 1px #C4C4C4;
   }
 }
 
@@ -133,36 +105,14 @@ button.red-button {
   }
 }
 
-.appointment-alert {
-  width: 230px;
-  height: 40px;
-  color:  #FF8C00;
-  border: solid 1px #FF8C00;
-  text-align: center;
+#appointment-alert {
+  color: red;
+  border: solid 1px red;
+  padding: 4px 8px;
 }
 
-.appointment-alert p{
-  padding-top: 7px;
-}
-
-.appointment-notice {
-  width: 125px;
-  height: 40px;
-  color: green;
-  border: solid 1px green;
-  text-align: center;
-}
-
-.appointment-notice p{
-  padding-top: 7px;
-}
-
-.username{
-  color: #467486;
-}
-
-.user{
-  height: 40px;
-  border: solid 1px #467486;
-  text-align: centerl
+#appointment-notice {
+  color: blue;
+  border: solid 1px blue;
+  padding: 4px 8px;
 }
