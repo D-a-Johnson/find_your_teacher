@@ -26,7 +26,7 @@
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
     ></div>
   </div>
-
+  <hr/>
   <div class = "lesson-review">
       <h3>Reviews</h3>
         <% if @lesson.reviews.empty?  %>
@@ -36,8 +36,10 @@
           <% @lesson.reviews.each do |review| %>
           <li>
             <%= cl_image_tag review.user.avatar, class: "avatar" %>
-            <% review.rating.times do %> <i class="fas fa-star"></i> <% end %>
-            <%= review.content %>
+              <%= review.user.first_name %>
+              <% review.rating.times do %> <i class="fas fa-star"></i> <% end %>
+            <p class = "review-content"> <%= review.content %> </p>
+            <hr/>
             <% if policy(review).destroy? %>
               <%= link_to lesson_review_path(@lesson, review), method: :delete, data: { confirm: "Are you sure?" } do %>
                 <i class="fa fa-trash lesson_review"></i>
@@ -53,8 +55,6 @@
         <% end %>
   </div>
 </div>
-
-
 
 
 <div class="book-footer fixed-bottom d-flex justify-content-between pt-3 pb-2 px-3 border-top">
