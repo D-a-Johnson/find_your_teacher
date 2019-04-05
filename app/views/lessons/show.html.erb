@@ -16,32 +16,6 @@
     </div>
   </div>
 
-   <div class = "lesson-review">
-    <h3>Reviews</h3>
-      <% if @lesson.reviews.empty?  %>
-        <%= render "reviews/new", lesson: @lesson, review: @review %>
-      <% else %>
-      <ul>
-        <% @lesson.reviews.each do |review| %>
-        <li>
-          <%= cl_image_tag review.user.avatar, class: "avatar" %>
-          <% review.rating.times do %> <i class="fas fa-star"></i> <% end %>
-          <%= review.content %>
-          <% if policy(review).destroy? %>
-            <%= link_to lesson_review_path(@lesson, review), method: :delete, data: { confirm: "Are you sure?" } do %>
-              <i class="fa fa-trash lesson_review"></i>
-            <% end %>
-          <% end %>
-        </li>
-        <% end %>
-          <%= simple_form_for [@lesson, @review] do |f| %>
-            <%= f.input :rating, collection: 0..5 %>
-            <%= f.input :content %>
-            <%= f.submit class: "btn btn-primary"%>
-          <% end %>
-      <% end %>
-
-  </div>
 
   <div class="lesson-map mt-4">
     <div
@@ -52,7 +26,36 @@
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
     ></div>
   </div>
+
+  <div class = "lesson-review">
+      <h3>Reviews</h3>
+        <% if @lesson.reviews.empty?  %>
+          <%= render "reviews/new", lesson: @lesson, review: @review %>
+        <% else %>
+        <ul>
+          <% @lesson.reviews.each do |review| %>
+          <li>
+            <%= cl_image_tag review.user.avatar, class: "avatar" %>
+            <% review.rating.times do %> <i class="fas fa-star"></i> <% end %>
+            <%= review.content %>
+            <% if policy(review).destroy? %>
+              <%= link_to lesson_review_path(@lesson, review), method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="fa fa-trash lesson_review"></i>
+              <% end %>
+            <% end %>
+          </li>
+          <% end %>
+            <%= simple_form_for [@lesson, @review] do |f| %>
+              <%= f.input :rating, collection: 1..5 %>
+              <%= f.input :content %>
+              <%= f.submit class: "btn btn-primary"%>
+            <% end %>
+        <% end %>
+  </div>
 </div>
+
+
+
 
 <div class="book-footer fixed-bottom d-flex justify-content-between pt-3 pb-2 px-3 border-top">
   <div class="booking-details">
