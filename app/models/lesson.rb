@@ -1,7 +1,7 @@
 class Lesson < ApplicationRecord
   belongs_to :category
   belongs_to :user
-  has_many :reviews
+  has_many :reviews, dependent: :delete_all
   validates :price, presence: true
   validates :duration, presence: true
   validates :date, presence: true
