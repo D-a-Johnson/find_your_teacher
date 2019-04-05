@@ -27,8 +27,6 @@
       <div class="tab-container p-5 d-flex justify-content-center">
 
         <div class="cards">
-          <div class="row">
-            <div class="col-sm-12">
               <% if @appointments == [] %>
                 <p class="pt-3 pl-3">Currently you have no bookings.</p>
               <% else %>
@@ -60,14 +58,12 @@
                     </div>
 
                     <%= link_to lesson_path(lesson) do %>
-                    <p class="btn btn-secondary">lesson details</p>
+                    <p class="btn btn-details">Details</p>
                     <% end %>
 
                   </div>
                 <% end %>
               <% end %>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -75,8 +71,6 @@
       <div class="tab-container p-5 d-flex justify-content-center">
 
         <div class="cards">
-          <div class="row">
-            <div class="col-sm-12">
 
               <% if @lessons == [] %>
                 <p class="pt-3 pl-3">Currently you have no lessons.</p>
@@ -116,15 +110,13 @@
                     </div>
 
                     <%= link_to lesson_path(lesson) do %>
-                    <p class="btn btn-secondary">lesson details</p>
+                    <p class="btn btn-details">DETAILS</p>
                     <% end %>
 
                   </div>
                 <% end %>
               <% end %>
 
-            </div>
-          </div>
         </div>
 
       </div>
