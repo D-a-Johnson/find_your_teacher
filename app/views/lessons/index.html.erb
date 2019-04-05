@@ -20,29 +20,31 @@
         </div>
       <% end %>
     </div>
-    <% @lessons.each do |lesson| %>
-      <%= link_to lesson_path(lesson), :action => 'go' do %>
-        <div class="card pt-3 px-3 mx-3 my-3">
-          <div class="title d-flex justify-content-between">
-            <h4><%= lesson.category.name.upcase %></h4>
-            <%= cl_image_tag lesson.user.avatar, class: "avatar" %>
-          </div>
-          <div class="desc my-3">
-            <div class="lessons-desc">
-              <p><%= lesson.detail.truncate(200) %></p>
+    <div class="">
+      <% @lessons.each do |lesson| %>
+        <%= link_to lesson_path(lesson), :action => 'go' do %>
+          <div class="card pt-3 px-3 mx-3 my-3">
+            <div class="title d-flex justify-content-between">
+              <h4><%= lesson.category.name.upcase %></h4>
+              <%= cl_image_tag lesson.user.avatar, class: "avatar" %>
             </div>
-            <div class="details">
-              <ul class="d-flex">
-                <li class="mr-3"><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
-                <li class="mr-3"><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
-                <li class="mr-3"><i class="fas fa-yen-sign"></i> <%= lesson.price %></li>
-                <li class="mr-3"><i class="fas fa-map-marker-alt"></i> <%= lesson.city %>, <%= lesson.address %></li>
-              </ul>
+            <div class="desc my-3">
+              <div class="lessons-desc">
+                <p><%= lesson.detail.truncate(200) %></p>
+              </div>
+              <div class="details">
+                <ul class="d-flex">
+                  <li class="mr-3"><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
+                  <li class="mr-3"><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
+                  <li class="mr-3"><i class="fas fa-yen-sign"></i> <%= lesson.price %></li>
+                  <li class="mr-3"><i class="fas fa-map-marker-alt"></i> <%= lesson.city %>, <%= lesson.address %></li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 
   <div class="map">
