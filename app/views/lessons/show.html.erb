@@ -16,58 +16,64 @@
     </div>
   </div>
 
-
-  <div class="lesson-map mt-4">
+  <div class="lesson-map my-4">
     <div
       id="map"
       style="width: 100%;
-      height: 200px;"
+      height: 100%;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
     ></div>
   </div>
   <hr/>
-  <div class = "lesson-review">
-      <h3>Reviews</h3>
+  <div class="lesson-review">
+      <h3>REVIEWS</h3>
         <% if @lesson.reviews.empty?  %>
           <%= render "reviews/new", lesson: @lesson, review: @review %>
         <% else %>
         <ul>
           <% @lesson.reviews.each do |review| %>
           <li>
-            <%= cl_image_tag review.user.avatar, class: "avatar" %>
-              <%= review.user.first_name %>
-              <% review.rating.times do %> <i class="fas fa-star"></i> <% end %>
-            <p class = "review-content"> <%= review.content %> </p>
-            <hr/>
-            <% if policy(review).destroy? %>
+            <div class="user-rating-info d-flex">
+              <%= cl_image_tag review.user.avatar, class: "avatar mr-2 mt-1" %>
+              <p class="mr-3 mt-2 name px-3 py-1"><%= review.user.first_name.upcase %></p>
+                <% review.rating.times do %>
+                <i class="fas fa-star mt-3"></i>
+              <% end %>
+            </div>
+            <div class="review-content d-flex border-bottom mb-4 justify-content-between">
+              <p> <%= review.content %> </p>
+              <% if policy(review).destroy? %>
               <%= link_to lesson_review_path(@lesson, review), method: :delete, data: { confirm: "Are you sure?" } do %>
-                <i class="fa fa-trash lesson_review"></i>
+                <i class="fa fa-trash lesson_review ml-3"></i>
               <% end %>
             <% end %>
+            </div>
           </li>
           <% end %>
             <%= simple_form_for [@lesson, @review] do |f| %>
               <%= f.input :rating, collection: 1..5 %>
               <%= f.input :content %>
-              <%= f.submit class: "btn btn-primary"%>
+              <%= f.submit class: "btn btn-primary review-btn"%>
             <% end %>
         <% end %>
   </div>
 </div>
 
-
-<div class="book-footer fixed-bottom d-flex justify-content-between pt-3 pb-2 px-3 border-top">
-  <div class="booking-details">
-    <ul class="d-flex">
-      <li class="mr-3 mt-2"><i class="fas fa-table"></i> <%= @lesson.nice_date %></li>
-      <li class="mr-3 mt-2"><i class="fas fa-clock"></i> <%= @lesson.duration %> mins</li>
-      <li class="mr-3 mt-2"><i class="fas fa-yen-sign"></i> <%= @lesson.price %></li>
-    </ul>
+<% if Appointment.where(lesson_id: @lesson).blank? %>
+  <div class="book-footer fixed-bottom d-flex justify-content-between pt-3 pb-2 px-3 border-top mt-3">
+    <div class="booking-details">
+      <ul class="d-flex">
+        <li class="mr-3 mt-2"><i class="fas fa-table"></i> <%= @lesson.nice_date %></li>
+        <li class="mr-3 mt-2"><i class="fas fa-clock"></i> <%= @lesson.duration %> mins</li>
+        <li class="mr-3 mt-2"><i class="fas fa-yen-sign"></i> <%= @lesson.price %></li>
+      </ul>
+    </div>
+    <h6 id="book-rounded"><%= link_to "BOOK",lesson_appointments_path(@lesson), method: :post %></h6>
   </div>
-  <h6 id="book-rounded"><%= link_to "BOOK",lesson_appointments_path(@lesson), method: :post %></h6>
-</div>
-    <script>
+<% end %>
+
+<script>
       mapboxgl.accessToken = 'pk.eyJ1IjoiYXBhdGhlaXNtIiwiYSI6ImNqdDlxMmFjMDAydTEzeXBhaDFiMzZ3cGkifQ.dOW6VyFx-aSA93ngCpWRUQ';
       var map = new mapboxgl.Map({
       container: 'map', // Container ID
