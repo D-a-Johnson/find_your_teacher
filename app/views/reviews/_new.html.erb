@@ -1,6 +1,8 @@
-<h3>Be the first to review</h3>
-<%= simple_form_for [lesson, review] do |f| %>
-  <%= f.input :rating, collection: 1..5 %>
-  <%= f.input :content %>
-  <%= f.submit class: "btn btn-primary"%>
-<% end %>
+<div class="review-form">
+  <p>Be the first to review</p>
+  <%= simple_form_for [lesson, review] do |f| %>
+    <%= f.input :rating, collection: 1..5 %>
+    <%= f.input :content %>
+    <%= f.submit class: "btn btn-primary review-btn"%>
+  <% end %>
+</div>
