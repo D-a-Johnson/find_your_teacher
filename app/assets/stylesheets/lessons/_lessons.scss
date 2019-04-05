@@ -10,6 +10,7 @@ ul{
 
 .card{
   background-color: white;
+  border-radius: 8px;
 }
 
 .cards a{
@@ -27,7 +28,20 @@ ul{
   width: 1000px;
 }
 
+.submit-button{
+  border-radius: 6px;
+}
+
+.search-keyword{
+  border-radius: 6px;
+}
+
+.search-date{
+  border-radius: 6px;
+}
+
 #map{
   position: sticky;
   top: 0;
 }
+
