@@ -26,28 +26,34 @@
     <div class="tab-pane fade show active" id="booked" role="tabpanel" aria-labelledby="booked-tab">
       <div class="tab-container p-5 d-flex justify-content-center">
 
-        <div class="cards">
+        <div class="lesson-cards">
           <div class="row">
             <div class="col-sm-12">
               <% if @appointments == [] %>
                 <p class="pt-3 pl-3">Currently you have no bookings.</p>
               <% else %>
                 <% @appointments.each do |appointment| %>
-                  <div class="card m-3 p-3">
-                    <div class="d-flex justify-content-top">
-                      <% lesson = Lesson.find(appointment.lesson_id) %>
-                      <%# teacher_name = User.find(lesson.user_id).username %>
-                      <h4><%= lesson.category.name.upcase %></h4>&nbsp;&nbsp;&nbsp;
-
+                  <div class="individual-card m-3 p-3">
+                    <div class="d-flex justify-content-between">
+                      <div class="confirm d-flex">
+                        <% lesson = Lesson.find(appointment.lesson_id) %>
+                        <%# teacher_name = User.find(lesson.user_id).username %>
+                        <h4 class="mt-2 mr-3"><%= lesson.category.name.upcase %></h4>
                         <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
-                          <p id="appointment-alert">Waiting for confirmation</p>&nbsp;&nbsp;&nbsp;
+                          <div class="appointment-alert">
+                            <p>Waiting for confirmation</p>
+                          </div>
                         <% else %>
-                          <p id="appointment-notice">Confirmed</p>&nbsp;&nbsp;&nbsp;
+                          <div class="appointment-notice">
+                            <p>Confirmed</p>
+                          </div>
                         <% end %>
-                        <%= link_to delete_appointment_path(appointment), method: :delete, data: { confirm: "Are you sure to cancel the appointment?"} do %>
-                          <p class="btn btn-danger">Cancel</p>
-                        <% end %>
-
+                      </div>
+                        <div class="cancel-btn">
+                          <%= link_to delete_appointment_path(appointment), method: :delete, data: { confirm: "Are you sure to cancel the appointment?"} do %>
+                            <p class="btn btn-cancel">X</p>
+                          <% end %>
+                        </div>
                     </div>
                     <p><%= lesson.detail %></p>
                     <div class="details">
@@ -60,7 +66,7 @@
                     </div>
 
                     <%= link_to lesson_path(lesson) do %>
-                    <p class="btn btn-secondary">lesson details</p>
+                    <p class="btn btn-details">Details</p>
                     <% end %>
 
                   </div>
@@ -74,7 +80,7 @@
     <div class="tab-pane fade" id="created" role="tabpanel" aria-labelledby="created-tab">
       <div class="tab-container p-5 d-flex justify-content-center">
 
-        <div class="cards">
+        <div class="lesson-cards">
           <div class="row">
             <div class="col-sm-12">
 
@@ -82,14 +88,16 @@
                 <p class="pt-3 pl-3">Currently you have no lessons.</p>
               <% else %>
                 <% @lessons.each do |lesson| %>
-                  <div class="card m-3 p-3">
+                  <div class="individual-card m-3 p-3">
                     <div class="d-flex justify-content-top">
-                      <h4><%= lesson.category.name.upcase %></h4>&nbsp;&nbsp;&nbsp;
+                      <h4 class="mt-2"><%= lesson.category.name.upcase %></h4>&nbsp;&nbsp;&nbsp;
                       <% appointment = Appointment.find_by(lesson_id: lesson.id) %>
                       <% if appointment %> <%# check if appointment exists %>
                         <% username = User.find(appointment.user_id).username %>
                         <% if appointment.confirmed == false %> <%# if appointment is not confirmed %>
-                          <p id="appointment-alert">Booked by "<%= username %>"</p>&nbsp;&nbsp;&nbsp;
+                        <div class="user mx-2">
+                         <p class="mx-3 mt-2 username">Booked by "<%= username %>"</p>
+                         </div>
                           <%= link_to appointment_path(appointment), method: :patch, data: { confirm: "Are you sure to confirm the appointment?"} do %>
                           <p class="btn btn-primary">Confirm</p>
                           <% end %>&nbsp;&nbsp;&nbsp;
@@ -97,7 +105,11 @@
                           <p class="btn btn-danger">Reject</p>
                           <% end %>
                         <% else %>
-                          <p><span id="appointment-notice">Confirmed</span> (Booked by "<%= username %>")</p>
+                          <div class="appointment-notice">
+                            <p>Confirmed</p>
+                          </div><div class="user mx-2">
+                         <p class="mx-3 mt-2 username">Booked by "<%= username %>"</p>
+                         </div>
                         <% end %>
                       <% else %>
                         <%= link_to delete_lesson_path(lesson), method: :delete, data: { confirm: "Are you sure to delete this lesson?"} do %>
@@ -105,7 +117,7 @@
                         <% end %>
                       <% end %>
                     </div>
-                    <p><%= lesson.detail %></p>
+                    <p class="mt-3"><%= lesson.detail %></p>
                     <div class="details d-flex justify-content-top">
                       <ul>
                         <li class="mr-3"><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
@@ -116,7 +128,7 @@
                     </div>
 
                     <%= link_to lesson_path(lesson) do %>
-                    <p class="btn btn-secondary">lesson details</p>
+                    <p class="btn btn-details">Details</p>
                     <% end %>
 
                   </div>
