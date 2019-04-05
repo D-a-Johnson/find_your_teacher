@@ -1,3 +1,9 @@
-<%= cl_image_tag (lesson.user.avatar), class: "avatar-large" %>
-<h5><%= lesson.detail %></h5>
-<h5><%= lesson.city %> <%= lesson.address %></h5>
+<%= cl_image_tag (lesson.user.avatar), class: "avatar-bordered" %>
+<h4 class="popup-category"><%= lesson.category.name %></h4>
+  <ul class="popup-info">
+    <li class="mr-3"><i class="fas fa-table"></i> <%= lesson.nice_date %></li>
+    <li class="mr-3"><i class="fas fa-clock"></i> <%= lesson.duration %> mins</li>
+    <li class="mr-3"><i class="fas fa-yen-sign"></i> <%= lesson.price %></li>
+    <li class="mr-3"><i class="fas fa-map-marker-alt"></i> <%= lesson.city %>, <%= lesson.address %></li>
+  </ul>
+
