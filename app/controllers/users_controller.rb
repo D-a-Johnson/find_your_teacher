@@ -7,9 +7,7 @@ class UsersController < ApplicationController
     @lesson = Lesson.new
     authorize @lesson
 
-    # @lessons = Lesson.where(user_id: params[:id])
     @lessons = current_user.lessons
-    # @appointments = Appointment.where(user_id: params[:id])
     @appointments = current_user.appointments
   end
 end
